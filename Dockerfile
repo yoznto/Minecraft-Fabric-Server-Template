@@ -1,5 +1,5 @@
 # 使用適合 Minecraft 的 Java 17 環境
-FROM openjdk:17
+FROM eclipse-temurin:17-jdk-alpine
 
 # 安裝 unzip 與 pip，pip 用來裝 gdown（從 Google Drive 下載檔案）
 RUN apt update && \
