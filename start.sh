@@ -1,26 +1,13 @@
 #!/bin/bash
-
 set -e
 
 MODS_ID="1BdOxcbIdesZBywmxoxYdRX8si2wiexmE"
+MODS_URL="https://drive.google.com/uc?export=download&id=${MODS_ID}"
 
-# 確保已安裝 pip 和 gdown
-echo "🔧 確認 pip 和 gdown 安裝中..."
-if ! command -v pip &> /dev/null; then
-    echo "🔴 pip 未安裝，正在安裝..."
-    python3 -m ensurepip --upgrade
-    pip install --upgrade pip
-fi
-
-if ! command -v gdown &> /dev/null; then
-    echo "🔴 gdown 未安裝，正在安裝..."
-    pip install gdown
-fi
-
-# 下載並解壓 mods.zip（如未存在）
+# 下載 mods.zip（如未存在）
 if [ ! -d "mods" ]; then
-    echo "📥 正在下載模組..."
-    gdown --id "$MODS_ID" -O mods.zip
+    echo "📥 正在下載模組（使用 curl）..."
+    curl -L -o mods.zip "$MODS_URL"
     unzip mods.zip -d mods
     rm mods.zip
 else
