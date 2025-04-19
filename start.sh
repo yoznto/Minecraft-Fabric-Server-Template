@@ -29,4 +29,5 @@ echo "eula=true" > eula.txt
 
 # 啟動伺服器
 echo "🚀 啟動伺服器..."
-java -Xmx2G -Xms2G -jar fabric-server-launch.jar nogui
+java -Xmx1G -Xms1G -jar fabric-server-launch.jar nogui
+
