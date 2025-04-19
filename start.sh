@@ -1,20 +1,21 @@
 #!/bin/bash
+
 set -e
 
-MODS_ID="1BdOxcbIdesZBywmxoxYdRX8si2wiexmE"
-MODS_URL="https://drive.google.com/uc?export=download&id=${MODS_ID}"
+# 你的 GitHub mods.zip 檔案下載連結（請修改為自己的網址）
+MODS_URL="https://github.com/yoznto/Minecraft-Fabric-Server-Template/releases/download/V1.0.0/mods.zip"
 
-# 下載 mods.zip（如未存在）
+# 下載並解壓 mods.zip（如未存在）
 if [ ! -d "mods" ]; then
-    echo "📥 正在下載模組（使用 curl）..."
-    curl -L -o mods.zip "$MODS_URL"
+    echo "📥 正在從 GitHub 下載模組..."
+    curl -L "$MODS_URL" -o mods.zip
     unzip mods.zip -d mods
     rm mods.zip
 else
     echo "✅ mods 資料夾已存在"
 fi
 
-# 自動下載並安裝 Fabric server
+# 自動下載並安裝 Fabric server（如果未存在）
 if [ ! -f "fabric-server-launch.jar" ]; then
     echo "🌐 下載 Fabric 安裝器..."
     curl -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.0/fabric-installer-1.0.0.jar
