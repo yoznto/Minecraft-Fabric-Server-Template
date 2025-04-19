@@ -4,8 +4,18 @@ set -e
 
 MODS_ID="1BdOxcbIdesZBywmxoxYdRX8si2wiexmE"
 
-# 安裝 gdown（避免 curl 下載 Google Drive 出錯）
-pip install gdown || true
+# 確保已安裝 pip 和 gdown
+echo "🔧 確認 pip 和 gdown 安裝中..."
+if ! command -v pip &> /dev/null; then
+    echo "🔴 pip 未安裝，正在安裝..."
+    python3 -m ensurepip --upgrade
+    pip install --upgrade pip
+fi
+
+if ! command -v gdown &> /dev/null; then
+    echo "🔴 gdown 未安裝，正在安裝..."
+    pip install gdown
+fi
 
 # 下載並解壓 mods.zip（如未存在）
 if [ ! -d "mods" ]; then
